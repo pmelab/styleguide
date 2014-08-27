@@ -1,0 +1,4 @@
+name = Styleguide
+description = Styleguide module.
+package = Development
+core = 7.x

@@ -1,0 +1,86 @@
+<?php
+/**
+ * @file
+ * Arroyo specific styleguide.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function styleguide_menu() {
+  $items = array();
+
+  $items['styleguide'] = array(
+    'title' => 'Styleguide',
+    'page callback' => 'styleguide_controls',
+    'access callback' => TRUE,
+    'file' => 'includes/styleguide.controls.inc',
+    'type' => MENU_NORMAL_ITEM,
+    'weight' => 0,
+  );
+
+  $items['styleguide/controls'] = $items['styleguide'];
+  $items['styleguide/controls']['type'] = MENU_DEFAULT_LOCAL_TASK;
+  $items['styleguide/controls']['title'] = 'Controls';
+
+  $items['styleguide/forms'] = array(
+    'title' => 'Forms',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('styleguide_form'),
+    'access callback' => TRUE,
+    'file' => 'includes/styleguide.forms.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+
+  $items['styleguide/forms_disabled'] = array(
+    'title' => 'Forms disabled',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('styleguide_form_disabled'),
+    'access callback' => TRUE,
+    'file' => 'includes/styleguide.forms.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+
+  $items['styleguide/form_errors'] = array(
+    'title' => 'Form errors',
+    'page callback' => 'styleguide_form_errors',
+    'page arguments' => array('styleguide_form'),
+    'access callback' => TRUE,
+    'file' => 'includes/styleguide.forms.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 3,
+  );
+
+  $items['styleguide/formatted'] = array(
+    'title' => 'Text',
+    'page callback' => 'styleguide_formatted',
+    'access callback' => TRUE,
+    'file' => 'includes/styleguide.formatted.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 4,
+  );
+
+  $items['styleguide/autocomplete'] = array(
+    'title' => 'Styleguide dummy autocomplete',
+    'page callback' => 'styleguide_autocomplete',
+    'access arguments' => array('administer themes'),
+    'type' => MENU_CALLBACK,
+    'weight' => 5,
+  );
+
+  return $items;
+}
+
+/**
+ * Dummy autocompletion to test spinner.
+ */
+function styleguide_autocomplete() {
+  sleep(3);
+  drupal_json_output(array(
+    'Drupal' => 'Drupal',
+    'Is' => 'Is',
+    'Awesome!' => 'Awesome!',
+  ));
+}
