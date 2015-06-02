@@ -90,6 +90,9 @@ function styleguide_form($form, &$form_state) {
     '#title' => t('Multiselect'),
     '#options' => styleguide_form_options(30),
     '#multiple' => TRUE,
+    '#attributes' => array(
+      'placeholder' => t('Select something'),
+    ),
   );
 
   $form['username_dummy'] = array(
